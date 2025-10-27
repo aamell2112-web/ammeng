@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Validasi Form Pendaftaran</title>
+    
+    <style>
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Form Pendaftaran</h2>
+    <form id="formDaftar">
+        
+        <label>Nama:</label><br>
+        <input type="text" id="nama"><br>
+
+        <label>Email:</label><br>
+        <input type="email" id="email"><br>
+
+        <label>Password:</label><br>
+        <input type="password" id="password"><br>
+
+        <button type="submit">Daftar</button>
+    </form>
+    
+    <!-- Elemen ini akan kita gunakan untuk menampilkan pesan error/sukses -->
+    <p id="pesan"></p>
+
+    <script>
+        // 1. MEMILIH ELEMEN
+        const form = document.getElementById("formDaftar");
+        const pesan = document.getElementById("pesan");
+
+        // 2. MENANGANI EVENT
+        form.addEventListener("submit", function(event) {
+            // Mencegah form dikirim (perilaku default)
+            event.preventDefault();
+
+            // Mengambil nilai dari input
+            const nama = document.getElementById("nama").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            // 3. PROSES VALIDASI & MANIPULASI DOM
+            if (nama === "" || email === "" || password === "") {
+                // Manipulasi DOM: ubah teks dan warna
+                pesan.textContent = "Semua field harus diisi!";
+                pesan.style.color = "red";
+            } else if (password.length < 8) {
+                // Manipulasi DOM: ubah teks dan warna
+                pesan.textContent = "Password minimal 8 karakter!";
+                pesan.style.color = "red";
+            } else {
+                // Manipulasi DOM: ubah teks dan warna
+                pesan.textContent = "Pendaftaran berhasil!";
+                pesan.style.color = "green";
+            }
+        });
+    </script>
+</body>
+</html>
